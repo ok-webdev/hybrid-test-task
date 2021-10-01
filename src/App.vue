@@ -17,6 +17,7 @@ export default {
 </script>
 
 <style lang="scss">
+  @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
   *,
   *::before,
   *::after {
@@ -25,6 +26,6 @@ export default {
     box-sizing: border-box;
   }
   #app {
-    
+    font-family: 'Roboto', sans-serif;
   }
 </style>
