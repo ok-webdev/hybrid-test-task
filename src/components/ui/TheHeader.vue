@@ -1,8 +1,12 @@
 <template>
-  <header class="header">
+  <header class="header" @open-modal="$emit('open-modal')">
     <h1 class="header__title">
       {{title}}
     </h1>
+    <base-button 
+      name="Add post"
+      @click="$emit('open-modal')"
+    />
   </header>
 </template>
 
@@ -15,7 +19,7 @@ export default {
       required: true,
       default: 'Header'
     }
-  }
+  },
 }
 </script>
 
@@ -23,13 +27,18 @@ export default {
   .header{ 
     display: flex;
     align-items: center;
-    justify-content: center;
-    background: #FFFFFF;
-    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.06);
-    padding: 20px;
+    justify-content: space-between;
+    background: #fcfcfc;
+    box-shadow: 0px -6px 10px 0px rgba(0, 0, 0, 0.04) inset, 
+                0px 6px 20px rgba(0, 0, 0, 0.06);
+    padding: 20px 55px;
+    position: sticky;
+    top: 0;
+    left: 0;
     &__title{
       font-size: 36px;
       font-weight: 500;
+      color: #8f8f8f;
     }
   }
 </style>
