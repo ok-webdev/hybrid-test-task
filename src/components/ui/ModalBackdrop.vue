@@ -71,6 +71,7 @@
     }
 
     &__content {
+      width: 100%;
       display: inline-block;
       vertical-align: middle;
       position: relative;
