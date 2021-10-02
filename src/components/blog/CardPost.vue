@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: 'BlogPost',
+  name: 'CardPost',
   props: {
     title: {
       type: String,
