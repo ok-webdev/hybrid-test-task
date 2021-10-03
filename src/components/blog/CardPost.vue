@@ -1,14 +1,14 @@
 <template>
-  <article class="blog">
+  <router-link to="/post" class="blog">
     <header class="blog__header">
-      <h2 class="blog__title">{{title}}</h2>
+      <h2 class="blog__title">{{title !== '' ? title : 'No title'}}</h2>
       <p class="blog__date">{{date}}</p>  
     </header>
-    <p class="blog__description">{{description}}</p>
+    <p class="blog__description">{{description !== '' ? description : 'No description'}}</p>
     <p :class="[comments ? 'blog__comments blog__comments_available' : 'blog__comments']">
       Comments: <span>{{comments}}</span>
     </p>
-  </article>
+  </router-link>
 </template>
 
 <script>
@@ -18,7 +18,7 @@ export default {
     title: {
       type: String,
       required: false,
-      default: 'Title'
+      default: ''
     },
     date: {
       type: String,
@@ -27,7 +27,7 @@ export default {
     description: {
       type: String,
       requred: false,
-      default: 'Description',
+      default: '',
     },
     comments: {
       type: Number,
@@ -46,6 +46,7 @@ export default {
                 0px 6px 20px rgba(0, 0, 0, 0.06);
     padding: 30px;
     transition: all .3s;
+    text-decoration: none;
     &:hover {
       box-shadow: 0px -6px 12px 0px rgba(0, 0, 0, 0.06) inset, 
                   0px 6px 15px rgba(0, 0, 0, 0.1);
@@ -65,6 +66,11 @@ export default {
       font-weight: 400;
       color: #8f8f8f;
       }
+    &__description {
+      font-size: 14px;
+      font-weight: 400;
+      color: #474747;
+    }
     &__comments{
       font-size: 13px;
       font-weight: 400;
