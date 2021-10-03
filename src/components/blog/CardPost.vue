@@ -5,7 +5,9 @@
       <p class="blog__date">{{date}}</p>  
     </header>
     <p class="blog__description">{{description}}</p>
-
+    <p :class="[comments ? 'blog__comments blog__comments_available' : 'blog__comments']">
+      Comments: <span>{{comments}}</span>
+    </p>
   </article>
 </template>
 
@@ -26,6 +28,11 @@ export default {
       type: String,
       requred: false,
       default: 'Description',
+    },
+    comments: {
+      type: Number,
+      required: true,
+      default: 0
     }
   }
 }
@@ -58,5 +65,17 @@ export default {
       font-weight: 400;
       color: #8f8f8f;
       }
+    &__comments{
+      font-size: 13px;
+      font-weight: 400;
+      margin-top: 20px;
+      color: #8f8f8f;
+      span{
+        margin-left: 2px;
+      }
+      &_available{
+        color: #474747;
+      }
+    }
     }
 </style>
