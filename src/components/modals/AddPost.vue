@@ -1,15 +1,15 @@
 <template>
   <div class="add-post">
-    <form class="add-post__form">
+    <form class="add-post__form" >
       <div class="add-post__inputs">
         <div class="add-post__input">
-          <input type="text" id="post-title" placeholder="enter title">
+          <input type="text" id="post-title" placeholder="enter title" v-model="postTitle">
         </div>
         <div class="add-post__input">
-          <input type="text" id="post-description" placeholder="enter short description">
+          <input type="text" id="post-description" placeholder="enter short description" v-model="postDescription">
         </div>
         <div class="add-post__input">
-          <textarea id="post-content" cols="30" rows="10" placeholder="enter post"></textarea>
+          <textarea id="post-content" cols="30" rows="10" placeholder="enter post" v-model="postContent"></textarea>
         </div>
       </div>
       <div class="add-post__buttons">
@@ -20,6 +20,7 @@
         />
         <base-button 
           name="add"
+          @click="emitForm"
         />
       </div>
     </form>
@@ -32,6 +33,22 @@ export default {
   name: 'AddPost',
   components: {
     BaseButton
+  },
+  data() {
+    return{
+      postTitle: '',
+      postDescription: '',
+      postContent: ''
+    }
+  },
+  methods: {
+    emitForm() {
+      this.$emit('add-post', {
+        postTitle: this.postTitle,
+        postDescription: this.postDescription,
+        postContent: this.postContent
+      })
+    }
   }
 }
 </script>
