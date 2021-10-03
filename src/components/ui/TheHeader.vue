@@ -4,6 +4,7 @@
       {{title}}
     </h1>
     <base-button 
+      v-if="button"
       name="Add post"
       @click="$emit('open-modal')"
     />
@@ -18,6 +19,11 @@ export default {
       type: String,
       required: true,
       default: 'Header'
+    },
+    button: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
 }

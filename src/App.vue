@@ -2,6 +2,7 @@
   <div id="app">
     <the-header 
       title="Hybrid тестовое задание"
+      button
       @open-modal="showModal"
     />
     <div class="content">
