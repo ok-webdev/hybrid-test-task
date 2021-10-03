@@ -1,24 +1,26 @@
 <template>
-  <div>
-    <div class="modal__overlay"/>
+  <transition name="modal-fade">
+    <div>
+      <div class="modal__overlay"/>
 
-    <div
-      @click.self="$emit('close')"
-      class="modal__box"
-    >
       <div
         @click.self="$emit('close')"
-        class="modal__wrap"
+        class="modal__box"
       >
         <div
           @click.self="$emit('close')"
-          class="modal__content"
+          class="modal__wrap"
         >
-          <slot></slot>
+          <div
+            @click.self="$emit('close')"
+            class="modal__content"
+          >
+            <slot></slot>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -79,5 +81,17 @@
       text-align: left;
       margin: 50px auto;
     }
+  }
+</style>
+
+<style lang="scss">
+  .modal-fade-enter,
+  .modal-fade-leave-active {
+    opacity: 0;
+  }
+
+  .modal-fade-enter-active,
+  .modal-fade-leave-active {
+    transition: opacity .5s;
   }
 </style>
