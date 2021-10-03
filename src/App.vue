@@ -9,10 +9,15 @@
         v-for="post in posts"
         :key="post.date"
         :date="post.date"
+        :title="post.title"
+        :description="post.description"
       />
     </div>
     <modal-backdrop v-if="isModal" @close="hideModal">
-      <add-post @close="hideModal"/>
+      <add-post 
+        @close="hideModal" 
+        @add-post="addPostHandle"
+      />
     </modal-backdrop>
   </div>
 </template>
@@ -33,12 +38,7 @@ export default {
   },
   data() {
     return {
-      posts: [
-        {date: new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')},
-        {date: new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')},
-        {date: new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')},
-        {date: new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')},
-      ],
+      posts: [],
       isModal: false,
     }
   },
@@ -48,6 +48,16 @@ export default {
     },
     hideModal () {
       this.isModal = false;
+    },
+    addPostHandle(data) {
+      const newPost = {
+        date: new Date().toISOString().replace(/T/, ' ').replace(/\..+/, ''),
+        title: data.postContent,
+        description: data.postDescription,
+        content: data.postTitle
+      };
+      this.posts.push(newPost);
+      this.hideModal();
     }
   }
 }
