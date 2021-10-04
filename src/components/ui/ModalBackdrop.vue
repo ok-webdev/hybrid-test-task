@@ -44,6 +44,7 @@
       right: 0;
       bottom: 0;
       background: rgba(0, 0, 0, .1);
+      backdrop-filter: blur(3px);
       z-index: 9;
     }
 
