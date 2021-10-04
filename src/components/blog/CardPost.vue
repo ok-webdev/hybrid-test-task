@@ -1,5 +1,5 @@
 <template>
-  <router-link to="/post" class="blog">
+  <router-link :to="{path: `/post/${id}`}" class="blog">
     <header class="blog__header">
       <h2 class="blog__title">{{title !== '' ? title : 'No title'}}</h2>
       <p class="blog__date">{{date}}</p>  
@@ -15,14 +15,18 @@
 export default {
   name: 'CardPost',
   props: {
-    title: {
-      type: String,
-      required: false,
-      default: ''
+    id: {
+      type: Number,
+      required: true
     },
     date: {
       type: String,
       required: true
+    },
+    title: {
+      type: String,
+      required: false,
+      default: ''
     },
     description: {
       type: String,

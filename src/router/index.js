@@ -12,9 +12,10 @@ const routes = [
     component: PostCards
   },
   {
-    path: '/post',
+    path: '/post/:postId',
     name: 'Post',
-    component: PostView
+    component: PostView,
+    props: true
   }
 ];
 

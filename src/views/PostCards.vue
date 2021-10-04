@@ -8,7 +8,8 @@
     <div class="content">
       <card-post 
         v-for="post in posts"
-        :key="post.date"
+        :key="post.id"
+        :id="post.id"
         :date="post.date"
         :title="post.title"
         :description="post.description"
@@ -40,8 +41,9 @@ export default {
   },
   data() {
     return {
+      count: 1,
       posts: [
-        {date: new Date().toISOString().replace(/T/, ' ').replace(/\..+/, ''), title: 'Test post', description: 'Test description', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', comments: [{name: 'User', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'}]}
+        {id: 1, date: new Date().toISOString().replace(/T/, ' ').replace(/\..+/, ''), title: 'Test post', description: 'Add your first post by "Add Post" button', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', comments: [{name: 'User', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'}]}
       ],
       isModal: false,
     }
@@ -54,7 +56,9 @@ export default {
       this.isModal = false;
     },
     addPostHandle(data) {
+      this.count++;
       const newPost = {
+        id: this.count,
         date: new Date().toISOString().replace(/T/, ' ').replace(/\..+/, ''),
         title: data.postTitle,
         description: data.postDescription,
@@ -62,8 +66,14 @@ export default {
         comments: []
       };
       this.posts.push(newPost);
+      localStorage.setItem('posts', JSON.stringify(this.posts));
+      this.posts = JSON.parse(localStorage.getItem('posts'));
       this.hideModal();
     }
+  },
+  mounted() {
+    localStorage.setItem('posts', JSON.stringify(this.posts));
+    this.posts = JSON.parse(localStorage.getItem('posts'));
   }
 }
 </script>
