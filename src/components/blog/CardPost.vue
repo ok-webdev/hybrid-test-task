@@ -1,91 +1,97 @@
 <template>
-  <router-link :to="{path: `/post/${id}`}" class="blog">
+  <router-link :to="{ path: `/post/${id}` }" class="blog">
     <header class="blog__header">
-      <h2 class="blog__title">{{title !== '' ? title : 'No title'}}</h2>
-      <p class="blog__date">{{date}}</p>  
+      <h2 class="blog__title">{{ title !== '' ? title : 'No title' }}</h2>
+      <p class="blog__date">{{ date }}</p>
     </header>
-    <p class="blog__description">{{description !== '' ? description : 'No description'}}</p>
-    <p :class="[comments ? 'blog__comments blog__comments_available' : 'blog__comments']">
-      Comments: <span>{{comments}}</span>
+    <p class="blog__description">
+      {{ description !== '' ? description : 'No description' }}
+    </p>
+    <p
+      :class="[
+        comments ? 'blog__comments blog__comments_available' : 'blog__comments',
+      ]"
+    >
+      Comments: <span>{{ comments }}</span>
     </p>
   </router-link>
 </template>
 
 <script>
-export default {
-  name: 'CardPost',
-  props: {
-    id: {
-      type: Number,
-      required: true
+  export default {
+    name: 'CardPost',
+    props: {
+      id: {
+        type: Number,
+        required: true,
+      },
+      date: {
+        type: String,
+        required: true,
+      },
+      title: {
+        type: String,
+        required: false,
+        default: '',
+      },
+      description: {
+        type: String,
+        requred: false,
+        default: '',
+      },
+      comments: {
+        type: Number,
+        required: true,
+        default: 0,
+      },
     },
-    date: {
-      type: String,
-      required: true
-    },
-    title: {
-      type: String,
-      required: false,
-      default: ''
-    },
-    description: {
-      type: String,
-      requred: false,
-      default: '',
-    },
-    comments: {
-      type: Number,
-      required: true,
-      default: 0
-    }
-  }
-}
+  };
 </script>
 
 <style lang="scss" scoped>
-  .blog{
+  .blog {
     width: 40%;
     background: #fcfcfc;
-    box-shadow: 0px -6px 10px 0px rgba(0, 0, 0, 0.04) inset, 
-                0px 6px 20px rgba(0, 0, 0, 0.06);
+    box-shadow: 0px -6px 10px 0px rgba(0, 0, 0, 0.04) inset,
+      0px 6px 20px rgba(0, 0, 0, 0.06);
     padding: 30px;
-    transition: all .3s;
+    transition: all 0.3s;
     text-decoration: none;
     &:hover {
-      box-shadow: 0px -6px 12px 0px rgba(0, 0, 0, 0.06) inset, 
-                  0px 6px 15px rgba(0, 0, 0, 0.1);
-      }
-    &__header{
+      box-shadow: 0px -6px 12px 0px rgba(0, 0, 0, 0.06) inset,
+        0px 6px 15px rgba(0, 0, 0, 0.1);
+    }
+    &__header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      }
+    }
     &__title {
       font-size: 22px;
       font-weight: 400;
       color: #474747;
-      }
-    &__date{
+    }
+    &__date {
       font-size: 12px;
       font-weight: 400;
       color: #8f8f8f;
-      }
+    }
     &__description {
       font-size: 14px;
       font-weight: 400;
       color: #474747;
     }
-    &__comments{
+    &__comments {
       font-size: 13px;
       font-weight: 400;
       margin-top: 20px;
       color: #8f8f8f;
-      span{
+      span {
         margin-left: 2px;
       }
-      &_available{
+      &_available {
         color: #474747;
       }
     }
-    }
+  }
 </style>

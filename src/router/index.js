@@ -9,20 +9,20 @@ const routes = [
   {
     path: '/',
     name: 'Cards',
-    component: PostCards
+    component: PostCards,
   },
   {
     path: '/post/:postId',
     name: 'Post',
     component: PostView,
-    props: true
-  }
+    props: true,
+  },
 ];
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes
+  routes,
 });
 
 export default router;

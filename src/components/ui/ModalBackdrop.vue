@@ -1,20 +1,11 @@
 <template>
   <transition name="modal-fade">
     <div>
-      <div class="modal__overlay"/>
+      <div class="modal__overlay" />
 
-      <div
-        @click.self="$emit('close')"
-        class="modal__box"
-      >
-        <div
-          @click.self="$emit('close')"
-          class="modal__wrap"
-        >
-          <div
-            @click.self="$emit('close')"
-            class="modal__content"
-          >
+      <div @click.self="$emit('close')" class="modal__box">
+        <div @click.self="$emit('close')" class="modal__wrap">
+          <div @click.self="$emit('close')" class="modal__content">
             <slot></slot>
           </div>
         </div>
@@ -26,13 +17,13 @@
 <script>
   export default {
     name: 'ModalLayout',
-    mounted () {
-      document.body.style.overflow = 'hidden'
+    mounted() {
+      document.body.style.overflow = 'hidden';
     },
-    beforeDestroy () {
-      document.body.style.overflow = ''
-    }
-  }
+    beforeDestroy() {
+      document.body.style.overflow = '';
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
@@ -43,7 +34,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(0, 0, 0, .1);
+      background: rgba(0, 0, 0, 0.1);
       backdrop-filter: blur(3px);
       z-index: 9;
     }
@@ -93,6 +84,6 @@
 
   .modal-fade-enter-active,
   .modal-fade-leave-active {
-    transition: opacity .5s;
+    transition: opacity 0.5s;
   }
 </style>
