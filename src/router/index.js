@@ -1,21 +1,32 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import VueMeta from 'vue-meta';
 import PostView from '../views/PostView';
 import PostCards from '../views/PostCards';
 
 Vue.use(VueRouter);
+Vue.use(VueMeta);
 
 const routes = [
   {
     path: '/',
     name: 'Cards',
     component: PostCards,
+    meta: {
+      title: 'Posts',
+    },
   },
   {
     path: '/post/:postId',
     name: 'Post',
     component: PostView,
-    props: true,
+    // meta: {
+    //   title: JSON.parse(localStorage.getItem('posts')).filter((post) => {
+    //     if (post.id.toString() === this.$route.params.postId) {
+    //       return post.title;
+    //     }
+    //   }),
+    // },
   },
 ];
 
