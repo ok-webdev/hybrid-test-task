@@ -5,12 +5,23 @@
       <p>{{ date }}</p>
     </header>
     <p>{{ content }}</p>
-    <p>{{ comments }}</p>
+
+    <div class="post__comments">
+      <comment-card
+        v-for="comment in comments"
+        :key="comment.date"
+        :date="comment.date"
+        :name="comment.name"
+        :text="comment.text"
+      />
+    </div>
   </section>
 </template>
 
 <script>
+  import CommentCard from './CommentCard';
   export default {
+    components: { CommentCard },
     name: 'Post',
     props: {
       title: {
