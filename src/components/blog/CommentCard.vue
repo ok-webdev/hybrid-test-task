@@ -10,8 +10,16 @@
       </p>
     </div>
     <footer class="comment__footer">
-      <base-button class="comment__delete" name="delete" />
-      <base-button class="comment__edit" name="edit" />
+      <base-button
+        class="comment__delete"
+        name="delete"
+        @click="$emit('delete', id)"
+      />
+      <base-button
+        class="comment__edit"
+        name="edit"
+        @click="$emit('edit', id)"
+      />
     </footer>
   </div>
 </template>
@@ -44,7 +52,7 @@
 
 <style lang="scss" scoped>
   .comment {
-    width: 30%;
+    width: 100%;
     background: #fcfcfc;
     box-shadow: 0px -6px 10px 0px rgba(0, 0, 0, 0.04) inset,
       0px 6px 20px rgba(0, 0, 0, 0.06);
