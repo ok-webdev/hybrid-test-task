@@ -12,7 +12,8 @@
       <div class="post__comments-content">
         <comment-card
           v-for="comment in comments"
-          :key="comment.date"
+          :id="comment.id"
+          :key="comment.id"
           :date="comment.date"
           :name="comment.name"
           :text="comment.text"
@@ -88,6 +89,9 @@
           posts.filter((post) => {
             if (post.id.toString() === this.$route.params.postId) {
               post.comments.push({
+                id:
+                  Math.trunc(Math.random() * 42000000) *
+                  Math.trunc(Math.random() * 42),
                 date: new Date()
                   .toISOString()
                   .replace(/T/, ' ')
@@ -98,26 +102,17 @@
               localStorage.setItem('posts', JSON.stringify(posts));
             }
           });
+          this.commentName = '';
+          this.commentText = '';
         }
         this.$emit('setComments');
-        this.commentName = '';
-        this.commentText = '';
       },
       resetCommentsForm() {
         this.commentName = '';
         this.commentText = '';
       },
     },
-    // watch: {
-    //   comments: () => {
-    //     let posts = JSON.parse(localStorage.getItem('posts'));
-    //     return (this.comments = posts.filter((post) => {
-    //       if (post.id.toString() === this.$route.params.postId) {
-    //         return post.comments;
-    //       }
-    //     }));
-    //   },
-    // },
+    deleteComment() {},
   };
 </script>
 

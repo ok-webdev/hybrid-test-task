@@ -22,10 +22,13 @@
     components: { BaseButton },
     name: 'CommentCard',
     props: {
+      id: {
+        type: Number,
+        required: true,
+      },
       name: {
         type: String,
         required: false,
-        default: 'Anonimous',
       },
       date: {
         type: String,
