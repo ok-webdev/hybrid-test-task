@@ -43,7 +43,6 @@
   .input {
     display: flex;
     flex-direction: column;
-    margin-bottom: 20px;
     input {
       font-size: 12px;
       font-weight: 400;
