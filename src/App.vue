@@ -19,7 +19,7 @@
     font-family: 'Roboto', sans-serif;
   }
   #app {
-    height: 100vh;
+    min-height: 100vh;
     background: #fcfcfc;
     position: relative;
   }
