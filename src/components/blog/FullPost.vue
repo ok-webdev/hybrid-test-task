@@ -17,6 +17,9 @@
           :date="comment.date"
           :name="comment.name"
           :text="comment.text"
+          @delete="deleteComment(comment.id)"
+          @edit="editComment(comment.id)"
+          class="post__comments-comment"
         />
       </div>
     </div>
@@ -111,8 +114,24 @@
         this.commentName = '';
         this.commentText = '';
       },
+      deleteComment(commentId) {
+        let posts = JSON.parse(localStorage.getItem('posts'));
+        posts.filter((post) => {
+          if (post.id.toString() === this.$route.params.postId) {
+            post.comments.filter((comment) => {
+              if (comment.id === commentId) {
+                post.comments.splice(post.comments.indexOf(comment), 1);
+                localStorage.setItem('posts', JSON.stringify(posts));
+              }
+            });
+          }
+        });
+        this.$emit('deleteComment');
+      },
+      editComment(commentId) {
+        console.log(commentId);
+      },
     },
-    deleteComment() {},
   };
 </script>
 
@@ -135,14 +154,13 @@
       text-align: left;
     }
     &__comments {
+      width: 55%;
       margin-top: 40px;
-      &-content {
-        display: flex;
-        align-items: flex-start;
-        flex-wrap: wrap;
+      &-comment {
+        margin-bottom: 20px;
       }
       &-form {
-        width: 55%;
+        width: 60%;
         margin-top: 40px;
       }
       &-title {

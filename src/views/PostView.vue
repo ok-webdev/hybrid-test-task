@@ -7,6 +7,7 @@
       :content="content"
       :comments="comments"
       @setComments="updateComments"
+      @deleteComment="updateComments"
     />
   </div>
 </template>
