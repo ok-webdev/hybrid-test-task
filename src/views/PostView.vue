@@ -1,11 +1,12 @@
 <template>
   <div class="post">
-    <the-header title="Post view" />
+    <the-header />
     <full-post
       :title="title"
       :date="date"
       :content="content"
       :comments="comments"
+      @setComments="updateComments"
     />
   </div>
 </template>
@@ -24,6 +25,16 @@
         content: null,
         comments: null,
       };
+    },
+    methods: {
+      updateComments() {
+        const posts = JSON.parse(localStorage.getItem('posts'));
+        posts.filter((post) => {
+          if (post.id.toString() === this.$route.params.postId) {
+            this.comments = post.comments;
+          }
+        });
+      },
     },
     mounted() {
       const posts = JSON.parse(localStorage.getItem('posts'));
