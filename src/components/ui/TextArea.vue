@@ -43,7 +43,7 @@
         default: '10',
       },
       value: {
-        required: true,
+        required: false,
       },
     },
   };
