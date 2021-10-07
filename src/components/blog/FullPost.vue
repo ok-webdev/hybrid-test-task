@@ -44,8 +44,17 @@
         </div>
       </div>
       <div class="post__buttons">
-        <base-button name="cancel" type="reset" @click="resetCommentsForm" />
-        <base-button name="add comment" type="submit" @click="addComment" />
+        <base-button
+          name="cancel"
+          type="reset"
+          @click="resetCommentsForm"
+          class="post__buttons-cancel"
+        />
+        <base-button
+          name="add comment"
+          @click="addComment"
+          class="post__buttons-add"
+        />
       </div>
     </form>
   </section>
@@ -180,7 +189,11 @@
     &__buttons {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-start;
+      padding: 0 20px;
+      &-cancel {
+        margin-right: 20px;
+      }
     }
   }
 </style>
