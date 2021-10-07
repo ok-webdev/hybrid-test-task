@@ -1,6 +1,6 @@
 <template>
   <div>
-    <the-header title="Posts cards" button @open-modal="showModal" />
+    <the-header button @open-modal="showModal" />
     <div class="content">
       <card-post
         v-for="post in posts"
@@ -10,6 +10,7 @@
         :title="post.title"
         :description="post.description"
         :comments="post.comments.length"
+        @delete="deletePost(post.id)"
       />
     </div>
     <modal-backdrop v-if="isModal" @close="hideModal">
@@ -48,7 +49,14 @@
               'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
             comments: [
               {
+                id:
+                  Math.trunc(Math.random() * 42000000) *
+                  Math.trunc(Math.random() * 42),
                 name: 'User',
+                date: new Date()
+                  .toISOString()
+                  .replace(/T/, ' ')
+                  .replace(/\..+/, ''),
                 text:
                   'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
               },
@@ -82,6 +90,16 @@
         localStorage.setItem('posts', JSON.stringify(this.posts));
         this.posts = JSON.parse(localStorage.getItem('posts'));
         this.hideModal();
+      },
+      deletePost(postId) {
+        let posts = JSON.parse(localStorage.getItem('posts'));
+        posts.filter((post) => {
+          if (post.id === postId) {
+            posts.splice(posts.indexOf(post), 1);
+            localStorage.setItem('posts', JSON.stringify(posts));
+            this.posts = JSON.parse(localStorage.getItem('posts'));
+          }
+        });
       },
     },
     mounted() {

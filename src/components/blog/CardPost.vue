@@ -14,11 +14,14 @@
     >
       Comments: <span>{{ comments }}</span>
     </p>
+    <base-button name="delete" @click="$emit('delete', id)" />
   </router-link>
 </template>
 
 <script>
+  import BaseButton from '../ui/BaseButton';
   export default {
+    components: { BaseButton },
     name: 'CardPost',
     props: {
       id: {
