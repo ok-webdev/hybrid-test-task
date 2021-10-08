@@ -47,13 +47,14 @@
       <div class="post__comments-content">
         <comment-card
           v-for="comment in comments"
+          :postId="id"
           :id="comment.id"
           :key="comment.id"
           :date="comment.date"
           :name="comment.name"
           :text="comment.text"
           @delete="deleteComment(comment.id)"
-          @edit="editComment(comment.id)"
+          @editComment="$emit('editComment')"
           class="post__comments-comment"
         />
       </div>
@@ -180,9 +181,6 @@
           }
         });
         this.$emit('deleteComment');
-      },
-      editComment(commentId) {
-        console.log(commentId);
       },
       cancelEditPost() {
         this.editPostTitle = this.title;

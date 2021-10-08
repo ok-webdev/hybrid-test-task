@@ -11,6 +11,7 @@
       @setComments="updateAll"
       @deleteComment="updateAll"
       @updatePost="updateAll"
+      @editComment="updateAll"
     />
   </div>
 </template>

@@ -18,18 +18,40 @@
       <base-button
         class="comment__edit"
         name="edit"
-        @click="$emit('edit', id)"
+        @click="isCommentEditForm = !isCommentEditForm"
       />
     </footer>
+    <form class="comment__edit-form" v-if="isCommentEditForm">
+      <div class="comment__edit-inputs">
+        <text-area
+          id="edit-comment-text"
+          class="comment__edit-input"
+          v-model="editCommentText"
+          placeholder="Enter new text"
+        />
+      </div>
+      <div class="comment__edit-buttons">
+        <base-button
+          name="cancel"
+          class="comment__edit-cancel"
+          @click="isCommentEditForm = false"
+        />
+        <base-button name="submit" @click="editComment" />
+      </div>
+    </form>
   </div>
 </template>
 
 <script>
-  import BaseButton from '../ui/BaseButton.vue';
+  import TextArea from '../ui/TextArea';
+  import BaseButton from '../ui/BaseButton';
   export default {
-    components: { BaseButton },
+    components: { BaseButton, TextArea },
     name: 'CommentCard',
     props: {
+      postId: {
+        required: true,
+      },
       id: {
         type: Number,
         required: true,
@@ -45,6 +67,29 @@
       text: {
         type: String,
         required: true,
+      },
+    },
+    data() {
+      return {
+        isCommentEditForm: false,
+        editCommentText: this.text,
+      };
+    },
+    methods: {
+      editComment() {
+        let posts = JSON.parse(localStorage.getItem('posts'));
+        posts.filter((post) => {
+          if (post.id.toString() === this.postId) {
+            post.comments.filter((comment) => {
+              if (comment.id === this.id) {
+                comment.text = this.editCommentText;
+              }
+            });
+            localStorage.setItem('posts', JSON.stringify(posts));
+          }
+        });
+        this.$emit('editComment');
+        this.isCommentEditForm = false;
       },
     },
   };
@@ -95,6 +140,26 @@
     }
     &__delete {
       margin-right: 30px;
+    }
+    &__edit {
+      &-form {
+        width: 60%;
+        margin-top: 40px;
+      }
+      &-inputs {
+        margin-top: 20px;
+      }
+      &-input {
+        margin-bottom: 15px;
+      }
+      &-buttons {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+      }
+      &-cancel {
+        margin-right: 20px;
+      }
     }
   }
 </style>
