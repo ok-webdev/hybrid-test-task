@@ -13,20 +13,17 @@ const routes = [
     name: 'Cards',
     component: PostCards,
     meta: {
-      title: 'Posts',
+      title: 'Blog',
     },
   },
   {
     path: '/post/:postId',
     name: 'Post',
     component: PostView,
-    // meta: {
-    //   title: JSON.parse(localStorage.getItem('posts')).filter((post) => {
-    //     if (post.id.toString() === this.$route.params.postId) {
-    //       return post.title;
-    //     }
-    //   }),
-    // },
+    props: true,
+    meta: {
+      title: 'post-title',
+    },
   },
 ];
 
