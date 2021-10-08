@@ -127,12 +127,10 @@
         let posts = JSON.parse(localStorage.getItem('posts'));
         posts.filter((post) => {
           if (post.id.toString() === this.$route.params.postId) {
-            post.comments.filter((comment) => {
-              if (comment.id === commentId) {
-                post.comments.splice(post.comments.indexOf(comment), 1);
-                localStorage.setItem('posts', JSON.stringify(posts));
-              }
-            });
+            post.comments = post.comments.filter(
+              (comment) => comment.id !== commentId
+            );
+            localStorage.setItem('posts', JSON.stringify(posts));
           }
         });
         this.$emit('deleteComment');

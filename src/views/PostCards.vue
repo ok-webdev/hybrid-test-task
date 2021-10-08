@@ -93,13 +93,9 @@
       },
       deletePost(postId) {
         let posts = JSON.parse(localStorage.getItem('posts'));
-        posts.filter((post) => {
-          if (post.id === postId) {
-            posts.splice(posts.indexOf(post), 1);
-            localStorage.setItem('posts', JSON.stringify(posts));
-            this.posts = JSON.parse(localStorage.getItem('posts'));
-          }
-        });
+        posts = posts.filter((post) => post.id !== postId);
+        localStorage.setItem('posts', JSON.stringify(posts));
+        this.posts = JSON.parse(localStorage.getItem('posts'));
       },
     },
     mounted() {
