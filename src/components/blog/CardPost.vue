@@ -75,6 +75,7 @@
       font-size: 22px;
       font-weight: 400;
       color: #474747;
+      word-break: break-all;
     }
     &__date {
       font-size: 12px;
