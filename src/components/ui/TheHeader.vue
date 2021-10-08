@@ -1,8 +1,11 @@
 <template>
   <header class="header" @open-modal="$emit('open-modal')">
     <h1 class="header__title">
-      {{ title }}
+      {{ this.$route.meta.title }}
     </h1>
+    <router-link v-if="backlink" to="/" class="header__backlink"
+      >back to posts</router-link
+    >
     <base-button v-if="button" name="Add post" @click="$emit('open-modal')" />
   </header>
 </template>
@@ -11,12 +14,17 @@
   export default {
     name: 'Header',
     props: {
-      title: {
-        type: String,
-        required: true,
-        default: 'Header',
-      },
+      // title: {
+      //   type: String,
+      //   required: true,
+      //   default: 'Header',
+      // },
       button: {
+        type: Boolean,
+        required: false,
+        default: false,
+      },
+      backlink: {
         type: Boolean,
         required: false,
         default: false,
@@ -41,6 +49,13 @@
       font-size: 36px;
       font-weight: 500;
       color: #8f8f8f;
+    }
+    &__backlink {
+      font-size: 16px;
+      font-weight: 500;
+      text-transform: uppercase;
+      color: #5c5c5c;
+      text-decoration: none;
     }
   }
 </style>
