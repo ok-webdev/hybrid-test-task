@@ -37,7 +37,11 @@
           @click="cancelEditPost"
           class="post__edit-cancel"
         />
-        <base-button name="submit" @click="submitEditPost(id)" />
+        <base-button
+          name="submit"
+          @click="submitEditPost(id)"
+          class="post__edit-submit"
+        />
       </div>
     </form>
     <div class="post__comments">
@@ -227,6 +231,7 @@
       margin-top: 40px;
       &-comment {
         margin-bottom: 20px;
+        word-break: break-all;
       }
       &-form {
         width: 60%;
@@ -277,6 +282,57 @@
       }
       &-cancel {
         margin-right: 20px;
+      }
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .post {
+      padding: 20px;
+      &__content {
+        width: 100%;
+      }
+      &__comments {
+        width: 100%;
+        &-form {
+          width: 100%;
+        }
+        &-comment {
+          padding: 10px;
+        }
+      }
+      &__buttons {
+        flex-direction: column;
+        &-cancel {
+          width: 100%;
+          margin: 0;
+          margin-top: 10px;
+          order: 2;
+        }
+        &-add {
+          width: 100%;
+        }
+      }
+      &__edit {
+        &-edit {
+          width: 100%;
+          margin: 0;
+          margin-top: 20px;
+        }
+        &-form {
+          width: 100%;
+        }
+        &-buttons {
+          flex-direction: column;
+        }
+        &-cancel {
+          width: 100%;
+          margin: 0;
+          order: 2;
+          margin-top: 10px;
+        }
+        &-submit {
+          width: 100%;
+        }
       }
     }
   }

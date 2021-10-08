@@ -88,4 +88,9 @@
       justify-content: space-around;
     }
   }
+  @media screen and (max-width: 768px) {
+    .add-post {
+      width: 75%;
+    }
+  }
 </style>

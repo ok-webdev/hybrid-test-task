@@ -36,7 +36,11 @@
           class="comment__edit-cancel"
           @click="isCommentEditForm = false"
         />
-        <base-button name="submit" @click="editComment" />
+        <base-button
+          name="submit"
+          class="comment__edit-submit"
+          @click="editComment"
+        />
       </div>
     </form>
   </div>
@@ -159,6 +163,47 @@
       }
       &-cancel {
         margin-right: 20px;
+      }
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .comment {
+      &__header {
+        flex-direction: column;
+      }
+      &__date {
+        margin-top: 10px;
+      }
+      &__text {
+        max-width: 100%;
+        word-break: break-all;
+      }
+      &__footer {
+        flex-direction: column;
+      }
+      &__delete {
+        order: 2;
+        width: 100%;
+        margin: 0;
+        margin-top: 10px;
+      }
+      &__edit {
+        width: 100%;
+        &-form {
+          width: 100%;
+        }
+        &-buttons {
+          flex-direction: column;
+        }
+        &-cancel {
+          order: 2;
+          width: 100%;
+          margin: 0;
+          margin-top: 10px;
+        }
+        &-submit {
+          width: 100%;
+        }
       }
     }
   }

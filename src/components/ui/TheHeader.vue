@@ -58,4 +58,9 @@
       text-decoration: none;
     }
   }
+  @media screen and (max-width: 768px) {
+    .header {
+      flex-direction: column;
+    }
+  }
 </style>

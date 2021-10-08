@@ -14,7 +14,11 @@
     >
       Comments: <span>{{ comments }}</span>
     </p>
-    <base-button name="delete" @click="$emit('delete', id)" />
+    <base-button
+      name="delete"
+      @click="$emit('delete', id)"
+      class="blog__delete"
+    />
   </router-link>
 </template>
 
@@ -80,9 +84,11 @@
       color: #8f8f8f;
     }
     &__description {
+      max-width: 100%;
       font-size: 14px;
       font-weight: 400;
       color: #474747;
+      word-break: break-all;
     }
     &__comments {
       font-size: 13px;
@@ -94,6 +100,16 @@
       }
       &_available {
         color: #474747;
+      }
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .blog {
+      &__header {
+        flex-direction: column;
+      }
+      &__delete {
+        width: 100%;
       }
     }
   }
