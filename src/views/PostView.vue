@@ -1,6 +1,6 @@
 <template>
   <div class="post">
-    <the-header />
+    <the-header backlink />
     <full-post
       :id="$route.params.postId"
       :title="title"
