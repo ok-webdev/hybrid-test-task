@@ -1,7 +1,7 @@
 <template>
   <header class="header" @open-modal="$emit('open-modal')">
     <h1 class="header__title">
-      {{ this.$route.meta.title }}
+      {{ title }}
     </h1>
     <router-link v-if="backlink" to="/" class="header__backlink"
       >back to posts</router-link
@@ -14,6 +14,11 @@
   export default {
     name: 'Header',
     props: {
+      title: {
+        type: String,
+        required: false,
+        default: 'Blog',
+      },
       button: {
         type: Boolean,
         required: false,

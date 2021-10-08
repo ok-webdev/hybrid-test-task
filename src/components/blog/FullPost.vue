@@ -1,7 +1,6 @@
 <template>
   <section class="post">
     <header class="post__header">
-      <h1>{{ title }}</h1>
       <p class="post__date">{{ date }}</p>
     </header>
     <p class="post__content">{{ content }}</p>
