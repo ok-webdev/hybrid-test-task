@@ -49,6 +49,7 @@
       font-size: 36px;
       font-weight: 500;
       color: #8f8f8f;
+      word-break: break-all;
     }
     &__backlink {
       font-size: 16px;
