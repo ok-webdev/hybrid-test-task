@@ -5,6 +5,41 @@
       <p class="post__date">{{ date }}</p>
     </header>
     <p class="post__content">{{ content }}</p>
+    <base-button
+      name="edit post"
+      class="post__edit-edit"
+      @click="isPostEditForm = !isPostEditForm"
+    />
+    <form class="post__edit-form" v-if="isPostEditForm">
+      <div class="post__edit-inputs">
+        <form-input
+          id="edit-post-title"
+          class="post__edit-input"
+          v-model="editPostTitle"
+          placeholder="Enter new title"
+        />
+        <form-input
+          id="edit-post-description"
+          class="post__edit-input"
+          v-model="editPostDescription"
+          placeholder="Enter new description"
+        />
+        <text-area
+          id="edit-post-text"
+          class="post__edit-input"
+          v-model="editPostText"
+          placeholder="Enter new post"
+        />
+      </div>
+      <div class="post__edit-buttons">
+        <base-button
+          name="cancel"
+          @click="cancelEditPost"
+          class="post__edit-cancel"
+        />
+        <base-button name="submit" @click="submitEditPost(id)" />
+      </div>
+    </form>
     <div class="post__comments">
       <h2 class="post__comments-title">
         Comments:
@@ -70,10 +105,17 @@
     components: { CommentCard, FormInput, TextArea, BaseButton },
     name: 'Post',
     props: {
+      id: {
+        type: String,
+        required: true,
+      },
       title: {
         type: String,
         required: false,
         default: 'No title',
+      },
+      description: {
+        type: String,
       },
       date: {
         type: String,
@@ -92,6 +134,10 @@
       return {
         commentName: '',
         commentText: '',
+        editPostTitle: this.title,
+        editPostText: this.content,
+        editPostDescription: this.description,
+        isPostEditForm: false,
       };
     },
     methods: {
@@ -137,6 +183,24 @@
       },
       editComment(commentId) {
         console.log(commentId);
+      },
+      cancelEditPost() {
+        this.editPostTitle = this.title;
+        this.editPostText = this.content;
+        this.isPostEditForm = false;
+      },
+      submitEditPost(postId) {
+        let posts = JSON.parse(localStorage.getItem('posts'));
+        posts.filter((post) => {
+          if (post.id.toString() === postId) {
+            post.title = this.editPostTitle;
+            post.content = this.editPostText;
+            post.description = this.editPostDescription;
+          }
+          localStorage.setItem('posts', JSON.stringify(posts));
+        });
+        this.$emit('updatePost');
+        this.isPostEditForm = false;
       },
     },
   };
@@ -189,6 +253,30 @@
       align-items: center;
       justify-content: flex-start;
       padding: 0 20px;
+      &-cancel {
+        margin-right: 20px;
+      }
+    }
+    &__edit {
+      &-edit {
+        margin: 20px;
+      }
+      &-form {
+        width: 60%;
+        margin-top: 40px;
+      }
+      &-inputs {
+        margin-top: 20px;
+      }
+      &-input {
+        margin-bottom: 15px;
+      }
+      &-buttons {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 0 20px;
+      }
       &-cancel {
         margin-right: 20px;
       }

@@ -2,12 +2,15 @@
   <div class="post">
     <the-header />
     <full-post
+      :id="$route.params.postId"
       :title="title"
       :date="date"
       :content="content"
+      :description="description"
       :comments="comments"
-      @setComments="updateComments"
-      @deleteComment="updateComments"
+      @setComments="updateAll"
+      @deleteComment="updateAll"
+      @updatePost="updateAll"
     />
   </div>
 </template>
@@ -23,15 +26,19 @@
       return {
         title: null,
         date: null,
+        description: null,
         content: null,
         comments: null,
       };
     },
     methods: {
-      updateComments() {
+      updateAll() {
         const posts = JSON.parse(localStorage.getItem('posts'));
         posts.filter((post) => {
           if (post.id.toString() === this.$route.params.postId) {
+            this.title = post.title;
+            this.content = post.content;
+            this.description = post.description;
             this.comments = post.comments;
           }
         });
