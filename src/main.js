@@ -4,8 +4,12 @@ import router from './router';
 
 // components
 import BaseButton from './components/ui/BaseButton';
+import FormInput from './components/ui/FormInput';
+import TextArea from './components/ui/TextArea';
 
 Vue.component('base-button', BaseButton);
+Vue.component('form-input', FormInput);
+Vue.component('text-area', TextArea);
 
 Vue.config.productionTip = false;
 

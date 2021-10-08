@@ -14,11 +14,6 @@
   export default {
     name: 'Header',
     props: {
-      // title: {
-      //   type: String,
-      //   required: true,
-      //   default: 'Header',
-      // },
       button: {
         type: Boolean,
         required: false,

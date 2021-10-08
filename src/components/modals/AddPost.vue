@@ -35,16 +35,8 @@
 </template>
 
 <script>
-  import BaseButton from '../ui/BaseButton';
-  import FormInput from '../ui/FormInput';
-  import TextArea from '../ui/TextArea';
   export default {
     name: 'AddPost',
-    components: {
-      BaseButton,
-      FormInput,
-      TextArea,
-    },
     data() {
       return {
         postTitle: '',

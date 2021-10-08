@@ -101,13 +101,10 @@
 </template>
 
 <script>
-  import BaseButton from '../ui/BaseButton';
-  import FormInput from '../ui/FormInput';
-  import TextArea from '../ui/TextArea';
   import CommentCard from './CommentCard';
 
   export default {
-    components: { CommentCard, FormInput, TextArea, BaseButton },
+    components: { CommentCard },
     name: 'Post',
     props: {
       id: {

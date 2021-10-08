@@ -47,10 +47,7 @@
 </template>
 
 <script>
-  import TextArea from '../ui/TextArea';
-  import BaseButton from '../ui/BaseButton';
   export default {
-    components: { BaseButton, TextArea },
     name: 'CommentCard',
     props: {
       postId: {
