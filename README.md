@@ -12,7 +12,7 @@
 
 ### Deployed
 
-[WATCH HERE](https://hybrid-test-task.netlify.app/).
+[WATCH HERE](https://hybrid-test-task.vercel.app/).
 
 ## Project setup
 
