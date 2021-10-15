@@ -1,4 +1,4 @@
-# HYBRID TEST TASK
+# Pet-Project: Blog
 
 ## Blog App
 
@@ -12,7 +12,7 @@
 
 ### Deployed
 
-[WATCH HERE](https://hybrid-test-task.vercel.app/).
+[WATCH HERE](https://pet-project-blog.vercel.app/).
 
 ## Project setup
 
